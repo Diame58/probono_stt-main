@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_button_first"
+        android:enabled="true"
+        android:icon="@drawable/baseline_mic_none_24"
+        android:title="음성인식"/>
+    <item
+        android:id="@+id/action_button_second"
+        android:enabled="true"
+        android:icon="@drawable/baseline_house_24"
+        android:title="생활모드"/>
+    <item
+        android:id="@+id/action_button_third"
+        android:enabled="true"
+        android:icon="@drawable/baseline_wb_sunny_24"
+        android:title="외출모드"/>
+</menu>
