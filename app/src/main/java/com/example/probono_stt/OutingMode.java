@@ -21,12 +21,11 @@ import android.util.Log;
 public class OutingMode extends Fragment{
     private Interpreter tflite;
 
-    // 생성자에서 모델 로드
     public OutingMode(Context context) {
         try {
             tflite = new Interpreter(loadModelFile(context, "my_model.tflite"));
             Log.d("ModelLoad", "Model is loaded successfully.");
-            // 모델 메타데이터 출력
+
             if (tflite != null) {
                 Log.d("ModelLoad", "Input count: " + tflite.getInputTensorCount());
                 Log.d("ModelLoad", "Output count: " + tflite.getOutputTensorCount());
@@ -36,8 +35,6 @@ public class OutingMode extends Fragment{
 
         }
     }
-
-    // 모델 파일 로드 메서드
     private MappedByteBuffer loadModelFile(Context context, String modelName) throws IOException {
         AssetFileDescriptor fileDescriptor = context.getAssets().openFd(modelName);
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
@@ -47,10 +44,15 @@ public class OutingMode extends Fragment{
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
 
-    // 예시: 모델을 사용하여 추론 수행
+    private float[][] runInference(float[] inputData) {
+        // 모델의 출력 데이터 크기를 미리 정의해야 합니다.
+        float[][] outputData = new float[1][NUMBER_OF_OUTPUT_CLASSES];
+        tflite.run(inputData, outputData);
+        return outputData;
+    }
+
     public void runInference() {
         if (tflite != null) {
-            // 여기에서 입력 데이터를 준비하고 tflite.run()을 호출하여 모델을 실행
         }
     }
 
